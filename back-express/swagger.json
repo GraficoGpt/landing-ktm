@@ -1,0 +1,401 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Monorepo API",
+      "description": "API documentation for the monorepo backend"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/api/hello-world": {
+        "get": {
+          "tags": ["Status"],
+          "summary": "Verifica el estado de las conexiones",
+          "description": "Comprueba la conexión con Turso y HubSpot",
+          "responses": {
+            "200": {
+              "description": "Estado de las conexiones",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "turso": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "string",
+                            "enum": ["connected", "failed"],
+                            "example": "connected"
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Turso connection is working."
+                          }
+                        }
+                      },
+                      "hubspot": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "string",
+                            "enum": ["connected", "failed"],
+                            "example": "connected"
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "HubSpot connection is working."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error al verificar las conexiones",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                        "example": "Connection check failed"
+                      },
+                      "details": {
+                        "type": "string",
+                        "example": "Error details message"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/hello-world/hubspot-properties": {
+        "get": {
+          "tags": ["HubSpot"],
+          "summary": "Obtiene las propiedades disponibles de HubSpot",
+          "description": "Retorna todas las propiedades configuradas en HubSpot para contactos",
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Lista de propiedades obtenida exitosamente",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "integer",
+                    "example": 15,
+                    "description": "Número total de propiedades"
+                  },
+                  "properties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "email",
+                          "description": "Nombre interno de la propiedad"
+                        },
+                        "label": {
+                          "type": "string",
+                          "example": "Email",
+                          "description": "Etiqueta visible de la propiedad"
+                        },
+                        "type": {
+                          "type": "string",
+                          "example": "string",
+                          "description": "Tipo de dato de la propiedad"
+                        },
+                        "fieldType": {
+                          "type": "string",
+                          "example": "text",
+                          "description": "Tipo de campo en HubSpot"
+                        },
+                        "groupName": {
+                          "type": "string",
+                          "example": "contactinformation",
+                          "description": "Grupo al que pertenece la propiedad"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Correo electrónico del contacto",
+                          "description": "Descripción de la propiedad"
+                        },
+                        "options": {
+                          "type": "array",
+                          "description": "Opciones disponibles para campos de selección",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error del servidor",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Error al obtener propiedades de HubSpot"
+                  },
+                  "details": {
+                    "type": "string",
+                    "example": "Error details message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/formulario": {
+        "post": {
+          "tags": ["Leads"],
+          "summary": "Crear nuevo lead",
+          "description": "Guarda un nuevo lead en la base de datos y lo envía a HubSpot",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "lead",
+              "description": "Datos del lead a crear",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "required": [
+                  "nombres",
+                  "apellidos",
+                  "email",
+                  "telefono",
+                  "cedula",
+                  "ciudad",
+                  "modelo",
+                  "terminos"
+                ],
+                "properties": {
+                  "nombres": {
+                    "type": "string",
+                    "example": "Juan"
+                  },
+                  "apellidos": {
+                    "type": "string",
+                    "example": "Pérez"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "juan.perez@email.com"
+                  },
+                  "telefono": {
+                    "type": "string",
+                    "example": "3001234567"
+                  },
+                  "cedula": {
+                    "type": "string",
+                    "example": "1234567890"
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "example": "Bogotá"
+                  },
+                  "modelo": {
+                    "type": "string",
+                    "example": "CX-5E"
+                  },
+                  "terminos": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Lead creado exitosamente en todos los servicios",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "example": "Lead guardado exitosamente en todos los servicios"
+                  },
+                  "detalles": {
+                    "type": "object",
+                    "properties": {
+                      "turso": {
+                        "type": "object",
+                        "properties": {
+                          "exitoso": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "id": {
+                            "type": "integer",
+                            "example": 123
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": null
+                          }
+                        }
+                      },
+                      "hubspot": {
+                        "type": "object",
+                        "properties": {
+                          "exitoso": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "456"
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "207": {
+              "description": "Lead guardado parcialmente",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "example": "Lead guardado parcialmente"
+                  },
+                  "advertencia": {
+                    "type": "string",
+                    "example": "No se pudo sincronizar con HubSpot"
+                  },
+                  "detalles": {
+                    "type": "object",
+                    "properties": {
+                      "turso": {
+                        "type": "object",
+                        "properties": {
+                          "exitoso": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "id": {
+                            "type": "integer",
+                            "example": 123
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": null
+                          }
+                        }
+                      },
+                      "hubspot": {
+                        "type": "object",
+                        "properties": {
+                          "exitoso": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": "API Key inválida"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Datos inválidos",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Campos requeridos faltantes"
+                  },
+                  "campos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": ["nombres", "email"]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error del servidor o error en ambos servicios",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Error al procesar el lead en ambos servicios"
+                  },
+                  "detalles": {
+                    "type": "object",
+                    "properties": {
+                      "turso": {
+                        "type": "object",
+                        "properties": {
+                          "exitoso": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": "Error de conexión con la base de datos"
+                          }
+                        }
+                      },
+                      "hubspot": {
+                        "type": "object",
+                        "properties": {
+                          "exitoso": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": "Error de conexión con HubSpot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

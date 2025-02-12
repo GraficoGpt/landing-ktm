@@ -1,0 +1,16 @@
+**/node_modules/**
+**/dist/**
+**/build/**
+**/public/build/**
+**/public/assets/**
+**/public/images/**
+node_modules
+
+.env
+.env.production
+
+.DS_Store
+
+Thumbs.db
+
+**/.env

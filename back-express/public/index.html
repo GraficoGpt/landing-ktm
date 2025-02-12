@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de Servicios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: black;
+            color: white;
+        }
+        .status-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #111;
+            border-radius: 8px;
+        }
+        .service-status {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .connected {
+            background-color: #1a472a;
+            border-left: 5px solid #2ecc71;
+        }
+        .failed {
+            background-color: #4a1919;
+            border-left: 5px solid #e74c3c;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .connected .status-dot {
+            background-color: #2ecc71;
+        }
+        .failed .status-dot {
+            background-color: #e74c3c;
+        }
+        .docs-link {
+            color: #3498db;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .docs-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estado de Servicios</h1>
+    <div class="status-container" id="statusContainer">
+        <div id="tursoStatus" class="service-status">
+            <span class="status-dot"></span>
+            Verificando Turso...
+        </div>
+        <div id="hubspotStatus" class="service-status">
+            <span class="status-dot"></span>
+            Verificando HubSpot...
+        </div>
+    </div>
+    <a href="/api-docs" class="docs-link">Ver documentación API</a>
+
+    <script>
+        async function checkServices() {
+            try {
+                const response = await fetch('/api/hello-world');
+                const data = await response.json();
+
+                // Actualizar estado de Turso
+                const tursoElement = document.getElementById('tursoStatus');
+                tursoElement.className = `service-status ${data.turso.status}`;
+                tursoElement.innerHTML = `
+                    <span class="status-dot"></span>
+                    <strong>Turso:</strong> ${data.turso.message}
+                `;
+
+                // Actualizar estado de HubSpot
+                const hubspotElement = document.getElementById('hubspotStatus');
+                hubspotElement.className = `service-status ${data.hubspot.status}`;
+                hubspotElement.innerHTML = `
+                    <span class="status-dot"></span>
+                    <strong>HubSpot:</strong> ${data.hubspot.message}
+                `;
+            } catch (error) {
+                console.error('Error checking services:', error);
+                document.getElementById('statusContainer').innerHTML = `
+                    <div class="service-status failed">
+                        <span class="status-dot"></span>
+                        Error al verificar los servicios
+                    </div>
+                `;
+            }
+        }
+
+        // Verificar servicios solo al cargar la página
+        checkServices();
+    </script>
+</body>
+</html>

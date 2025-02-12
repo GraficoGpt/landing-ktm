@@ -1,0 +1,403 @@
+---
+const API_URL = import.meta.env.PUBLIC_API_URL;
+---
+
+<div class="form-container">
+  <form id="contact-form" method="POST">
+    <div class="form-item">
+      <label for="nombres">Nombres:</label>
+      <input type="text" id="nombres" name="nombres" required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos" required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <label for="email">Correo:</label>
+      <input type="email" id="email" name="email" required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <label for="telefono">Número de teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <label for="cedula">Cédula:</label>
+      <input type="text" id="cedula" name="cedula" required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <label for="ciudad">Ciudad:</label>
+      <select id="ciudad" name="ciudad" required>
+        <option value="" disabled selected>Selecciona</option>
+        <option value="Bogotá">Bogotá</option>
+        <option value="Chía">Chía</option>
+        <option value="Medellín">Medellín</option>
+        <option value="Cali">Cali</option>
+        <option value="Barranquilla">Barranquilla</option>
+        <option value="Bucaramanga">Bucaramanga</option>
+        <option value="Pereira">Pereira</option>
+        <option value="Ibagué">Ibagué</option>
+        <option value="Villavicencio">Villavicencio</option>
+        <option value="Cúcuta">Cúcuta</option>
+        <option value="Armenia">Armenia</option>
+        <option value="Manizales">Manizales</option>
+        <option value="Cartagena">Cartagena</option>
+        <option value="Santa">Santa</option>
+        <option value="Valledupar">Valledupar</option>
+        <option value="Soledad">Soledad</option>
+        <option value="Montería">Montería</option>
+        <option value="Neiva">Neiva</option>
+        <option value="Pasto">Pasto</option>
+        <option value="Popayán">Popayán</option>
+        <option value="Florencia">Florencia</option>
+        <option value="Tunja">Tunja</option>
+        <option value="Yopal">Yopal</option>
+      </select>
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <label for="modelo">Modelo de interés CFMOTO:</label>
+      <select id="modelo" name="modelo" required>
+        <option value="" disabled selected>Selecciona</option>
+        <option value="CX-5E">CX-5E</option>
+        <option value="CX-2E">CX-2E</option>
+        <option value="Papio Racer">Papio Racer</option>
+        <option value="Papio Trail">Papio Trail</option>
+        <option value="250SR-S">250SR-S</option>
+        <option value="250SR FUN">250SR FUN</option>
+        <option value="250CL-X">250CL-X</option>
+        <option value="300SR">300SR</option>
+        <option value="300CL-X">300CL-X</option>
+        <option value="300NK">300NK</option>
+        <option value="450MT">450MT</option>
+        <option value="450SR">450SR</option>
+        <option value="450CL-C">450CL-C</option>
+        <option value="450NK">450NK</option>
+        <option value="450 SR-S">450 SR-S</option>
+        <option value="675SR-R">675SR-R</option>
+        <option value="700CLX - ADVENTURE">700CLX - ADVENTURE</option>
+        <option value="700CLX - SPORT">700CLX - SPORT</option>
+        <option value="700CLX - HERITAGE">700CLX - HERITAGE</option>
+        <option value="700MT">700MT</option>
+        <option value="800MT - EXPLORE">800MT - EXPLORE</option>
+        <option value="800MT - SPORT">800MT - SPORT</option>
+        <option value="800NK NORMAL">800NK NORMAL</option>
+        <option value="800NK - HIGH">800NK - HIGH</option>
+        <option value="800MT-X">800MT-X</option>
+        <option value="Zeeho AE8+">Zeeho AE8+</option>
+        <option value="CFORCE 110">CFORCE 110</option>
+        <option value="CFORCE 450 L High">CFORCE 450 L High</option>
+        <option value="CFORCE 520 L High">CFORCE 520 L High</option>
+        <option value="CFORCE 625 Touring">CFORCE 625 Touring</option>
+        <option value="CFORCE 850 XC">CFORCE 850 XC</option>
+        <option value="CFORCE 1000 OVERLAND">CFORCE 1000 OVERLAND</option>
+        <option value="UFORCE 600">UFORCE 600</option>
+        <option value="UFORCE 1000">UFORCE 1000</option>
+        <option value="UFORCE 1000 XL">UFORCE 1000 XL</option>
+        <option value="ZFORCE 800 TRAIL">ZFORCE 800 TRAIL</option>
+        <option value="ZFORCE 1000 SPORT">ZFORCE 1000 SPORT</option>
+        <option value="ZFORCE 950 SPORT 4">ZFORCE 950 SPORT 4</option>
+      </select>
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="form-item">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          id="terminos"
+          name="terminos"
+          class="form-check-input"
+          required
+        />
+        <label for="terminos" class="form-check-label">
+          Aceptar términos y condiciones
+        </label>
+      </div>
+    </div>
+    <div class="legal-text">
+      Al enviar este formulario, aceptas que CFMOTO Colombia procese tus datos
+      personales de acuerdo con nuestra Política de Privacidad. Tus datos serán
+      utilizados para contactarte sobre los productos y servicios de CFMOTO.
+      Puedes darte de baja en cualquier momento a través de los enlaces
+      proporcionados en nuestras comunicaciones.
+    </div>
+
+    <div class="form-button">
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+</div>
+
+<script define:vars={{ API_URL }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("#contact-form");
+
+    // Función para mostrar notificaciones
+    const showNotification = (message, type) => {
+      const notification = document.createElement("div");
+      notification.className = `notification ${type}`;
+      notification.style.position = "fixed";
+      notification.style.top = "20px";
+      notification.style.right = "20px";
+      notification.style.padding = "15px";
+      notification.style.borderRadius = "4px";
+      notification.style.zIndex = "1000";
+      notification.style.backgroundColor =
+        type === "success" ? "#4caf50" : "#f44336";
+      notification.style.color = "white";
+      notification.textContent = message;
+
+      document.body.appendChild(notification);
+      setTimeout(() => notification.remove(), 5000);
+    };
+
+    // Función para validar el formulario
+    const validateForm = (formData) => {
+      const email = formData.get("email");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRegex.test(email)) {
+        throw new Error("Formato de email inválido");
+      }
+
+      const telefono = formData.get("telefono");
+      const telefonoRegex = /^\d{10}$/;
+
+      if (!telefonoRegex.test(telefono)) {
+        throw new Error("El teléfono debe tener 10 dígitos");
+      }
+
+      const cedula = formData.get("cedula");
+      if (!/^\d{8,12}$/.test(cedula)) {
+        throw new Error("Cédula inválida");
+      }
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Agregar clase para activar validación visual
+      form.classList.add("was-validated");
+
+      try {
+        const formData = new FormData(form);
+
+        // Validar datos antes de enviar
+        validateForm(formData);
+
+        const formJson = Object.fromEntries(formData);
+
+        const response = await fetch(`${API_URL}/api/formulario`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formJson),
+        });
+
+        if (!response.ok) {
+          throw new Error("Error en el servidor");
+        }
+
+        const data = await response.json();
+
+        // Mostrar mensaje de éxito
+        showNotification("¡Formulario enviado exitosamente!", "success");
+
+        // Limpiar formulario
+        form.reset();
+        form.classList.remove("was-validated");
+      } catch (error) {
+        console.error("Error:", error);
+        showNotification(
+          error.message ||
+            "Error al enviar el formulario. Por favor, intente nuevamente.",
+          "error"
+        );
+      }
+    });
+
+    // Validación en tiempo real
+    const inputs = form.querySelectorAll("input, select");
+    inputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        if (input.checkValidity()) {
+          input.classList.remove("is-invalid");
+          input.classList.add("is-valid");
+        } else {
+          input.classList.remove("is-valid");
+          input.classList.add("is-invalid");
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .form-item label {
+    margin-bottom: 5px;
+  }
+  .form-item input,
+  .form-item select {
+    display: flex;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition:
+      border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+  }
+
+  .form-item input:focus,
+  .form-item select:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+
+  .form-item select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+  }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .form-check label {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .form-check-input {
+    margin-top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .form-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .form-button button {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    width: 100%;
+    color: #fff;
+    background-color: #0d6efd;
+    border: 1px solid #0d6efd;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition:
+      color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+  }
+
+  .form-button button:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+  }
+
+  .form-button button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+  }
+
+  .form-item label[for]:has(+ input:required)::after,
+  .form-item label[for]:has(+ select:required)::after {
+    content: " *";
+    color: #dc3545;
+    font-weight: bold;
+  }
+
+  /* Para el checkbox de términos y condiciones */
+  .form-check-label:has(+ input:required)::after {
+    content: " *";
+    color: #dc3545;
+    font-weight: bold;
+  }
+
+  .invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+  }
+
+  /* Mostrar validación solo después del primer intento de envío */
+  .was-validated .form-item input:invalid ~ .invalid-feedback,
+  .was-validated .form-item select:invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  /* Borde rojo solo después del primer intento de envío */
+  .was-validated .form-item input:invalid,
+  .was-validated .form-item select:invalid {
+    border-color: #dc3545;
+  }
+
+  /* Estilos para inputs válidos/inválidos */
+  .is-valid {
+    border-color: #198754 !important;
+  }
+
+  .is-invalid {
+    border-color: #dc3545 !important;
+  }
+
+  /* Estilos para notificaciones */
+  .notification {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>
