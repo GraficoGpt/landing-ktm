@@ -3,140 +3,142 @@ const API_URL = import.meta.env.PUBLIC_API_URL;
 ---
 
 <div class="form-container">
-  <form id="contact-form" method="POST">
-    <div class="form-item">
-      <label for="nombres">Nombres:</label>
-      <input type="text" id="nombres" name="nombres" required />
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <label for="apellidos">Apellidos:</label>
-      <input type="text" id="apellidos" name="apellidos" required />
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <label for="email">Correo:</label>
-      <input type="email" id="email" name="email" required />
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <label for="telefono">Número de teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" required />
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <label for="cedula">Cédula:</label>
-      <input type="text" id="cedula" name="cedula" required />
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <label for="ciudad">Ciudad:</label>
-      <select id="ciudad" name="ciudad" required>
-        <option value="" disabled selected>Selecciona</option>
-        <option value="Bogotá">Bogotá</option>
-        <option value="Chía">Chía</option>
-        <option value="Medellín">Medellín</option>
-        <option value="Cali">Cali</option>
-        <option value="Barranquilla">Barranquilla</option>
-        <option value="Bucaramanga">Bucaramanga</option>
-        <option value="Pereira">Pereira</option>
-        <option value="Ibagué">Ibagué</option>
-        <option value="Villavicencio">Villavicencio</option>
-        <option value="Cúcuta">Cúcuta</option>
-        <option value="Armenia">Armenia</option>
-        <option value="Manizales">Manizales</option>
-        <option value="Cartagena">Cartagena</option>
-        <option value="Santa">Santa</option>
-        <option value="Valledupar">Valledupar</option>
-        <option value="Soledad">Soledad</option>
-        <option value="Montería">Montería</option>
-        <option value="Neiva">Neiva</option>
-        <option value="Pasto">Pasto</option>
-        <option value="Popayán">Popayán</option>
-        <option value="Florencia">Florencia</option>
-        <option value="Tunja">Tunja</option>
-        <option value="Yopal">Yopal</option>
-      </select>
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <label for="modelo">Modelo de interés CFMOTO:</label>
-      <select id="modelo" name="modelo" required>
-        <option value="" disabled selected>Selecciona</option>
-        <option value="CX-5E">CX-5E</option>
-        <option value="CX-2E">CX-2E</option>
-        <option value="Papio Racer">Papio Racer</option>
-        <option value="Papio Trail">Papio Trail</option>
-        <option value="250SR-S">250SR-S</option>
-        <option value="250SR FUN">250SR FUN</option>
-        <option value="250CL-X">250CL-X</option>
-        <option value="300SR">300SR</option>
-        <option value="300CL-X">300CL-X</option>
-        <option value="300NK">300NK</option>
-        <option value="450MT">450MT</option>
-        <option value="450SR">450SR</option>
-        <option value="450CL-C">450CL-C</option>
-        <option value="450NK">450NK</option>
-        <option value="450 SR-S">450 SR-S</option>
-        <option value="675SR-R">675SR-R</option>
-        <option value="700CLX - ADVENTURE">700CLX - ADVENTURE</option>
-        <option value="700CLX - SPORT">700CLX - SPORT</option>
-        <option value="700CLX - HERITAGE">700CLX - HERITAGE</option>
-        <option value="700MT">700MT</option>
-        <option value="800MT - EXPLORE">800MT - EXPLORE</option>
-        <option value="800MT - SPORT">800MT - SPORT</option>
-        <option value="800NK NORMAL">800NK NORMAL</option>
-        <option value="800NK - HIGH">800NK - HIGH</option>
-        <option value="800MT-X">800MT-X</option>
-        <option value="Zeeho AE8+">Zeeho AE8+</option>
-        <option value="CFORCE 110">CFORCE 110</option>
-        <option value="CFORCE 450 L High">CFORCE 450 L High</option>
-        <option value="CFORCE 520 L High">CFORCE 520 L High</option>
-        <option value="CFORCE 625 Touring">CFORCE 625 Touring</option>
-        <option value="CFORCE 850 XC">CFORCE 850 XC</option>
-        <option value="CFORCE 1000 OVERLAND">CFORCE 1000 OVERLAND</option>
-        <option value="UFORCE 600">UFORCE 600</option>
-        <option value="UFORCE 1000">UFORCE 1000</option>
-        <option value="UFORCE 1000 XL">UFORCE 1000 XL</option>
-        <option value="ZFORCE 800 TRAIL">ZFORCE 800 TRAIL</option>
-        <option value="ZFORCE 1000 SPORT">ZFORCE 1000 SPORT</option>
-        <option value="ZFORCE 950 SPORT 4">ZFORCE 950 SPORT 4</option>
-      </select>
-      <div class="invalid-feedback">Este campo es requerido</div>
-    </div>
-
-    <div class="form-item">
-      <div class="form-check">
-        <input
-          type="checkbox"
-          id="terminos"
-          name="terminos"
-          class="form-check-input"
-          required
-        />
-        <label for="terminos" class="form-check-label">
-          Aceptar términos y condiciones
-        </label>
+  <div class="form-box">
+    <form id="contact-form" method="POST">
+      <div class="form-item">
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" required />
+        <div class="invalid-feedback">Este campo es requerido</div>
       </div>
-    </div>
-    <div class="legal-text">
-      Al enviar este formulario, aceptas que CFMOTO Colombia procese tus datos
-      personales de acuerdo con nuestra Política de Privacidad. Tus datos serán
-      utilizados para contactarte sobre los productos y servicios de CFMOTO.
-      Puedes darte de baja en cualquier momento a través de los enlaces
-      proporcionados en nuestras comunicaciones.
-    </div>
 
-    <div class="form-button">
-      <button type="submit">Enviar</button>
-    </div>
-  </form>
+      <div class="form-item">
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required />
+        <div class="invalid-feedback">Este campo es requerido</div>
+      </div>
+
+      <div class="form-item">
+        <label for="email">Correo:</label>
+        <input type="email" id="email" name="email" required />
+        <div class="invalid-feedback">Este campo es requerido</div>
+      </div>
+
+      <div class="form-item">
+        <label for="telefono">Número de teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required />
+        <div class="invalid-feedback">Este campo es requerido</div>
+      </div>
+
+      <div class="form-item">
+        <label for="cedula">Cédula:</label>
+        <input type="text" id="cedula" name="cedula" required />
+        <div class="invalid-feedback">Este campo es requerido</div>
+      </div>
+
+      <div class="form-item">
+        <label for="ciudad">Ciudad:</label>
+        <select id="ciudad" name="ciudad" required>
+          <option value="" disabled selected>Selecciona</option>
+          <option value="Bogotá">Bogotá</option>
+          <option value="Chía">Chía</option>
+          <option value="Medellín">Medellín</option>
+          <option value="Cali">Cali</option>
+          <option value="Barranquilla">Barranquilla</option>
+          <option value="Bucaramanga">Bucaramanga</option>
+          <option value="Pereira">Pereira</option>
+          <option value="Ibagué">Ibagué</option>
+          <option value="Villavicencio">Villavicencio</option>
+          <option value="Cúcuta">Cúcuta</option>
+          <option value="Armenia">Armenia</option>
+          <option value="Manizales">Manizales</option>
+          <option value="Cartagena">Cartagena</option>
+          <option value="Santa">Santa</option>
+          <option value="Valledupar">Valledupar</option>
+          <option value="Soledad">Soledad</option>
+          <option value="Montería">Montería</option>
+          <option value="Neiva">Neiva</option>
+          <option value="Pasto">Pasto</option>
+          <option value="Popayán">Popayán</option>
+          <option value="Florencia">Florencia</option>
+          <option value="Tunja">Tunja</option>
+          <option value="Yopal">Yopal</option>
+        </select>
+        <div class="invalid-feedback">Este campo es requerido</div>
+      </div>
+
+      <div class="form-item">
+        <label for="modelo">Modelo de interés CFMOTO:</label>
+        <select id="modelo" name="modelo" required>
+          <option value="" disabled selected>Selecciona</option>
+          <option value="CX-5E">CX-5E</option>
+          <option value="CX-2E">CX-2E</option>
+          <option value="Papio Racer">Papio Racer</option>
+          <option value="Papio Trail">Papio Trail</option>
+          <option value="250SR-S">250SR-S</option>
+          <option value="250SR FUN">250SR FUN</option>
+          <option value="250CL-X">250CL-X</option>
+          <option value="300SR">300SR</option>
+          <option value="300CL-X">300CL-X</option>
+          <option value="300NK">300NK</option>
+          <option value="450MT">450MT</option>
+          <option value="450SR">450SR</option>
+          <option value="450CL-C">450CL-C</option>
+          <option value="450NK">450NK</option>
+          <option value="450 SR-S">450 SR-S</option>
+          <option value="675SR-R">675SR-R</option>
+          <option value="700CLX - ADVENTURE">700CLX - ADVENTURE</option>
+          <option value="700CLX - SPORT">700CLX - SPORT</option>
+          <option value="700CLX - HERITAGE">700CLX - HERITAGE</option>
+          <option value="700MT">700MT</option>
+          <option value="800MT - EXPLORE">800MT - EXPLORE</option>
+          <option value="800MT - SPORT">800MT - SPORT</option>
+          <option value="800NK NORMAL">800NK NORMAL</option>
+          <option value="800NK - HIGH">800NK - HIGH</option>
+          <option value="800MT-X">800MT-X</option>
+          <option value="Zeeho AE8+">Zeeho AE8+</option>
+          <option value="CFORCE 110">CFORCE 110</option>
+          <option value="CFORCE 450 L High">CFORCE 450 L High</option>
+          <option value="CFORCE 520 L High">CFORCE 520 L High</option>
+          <option value="CFORCE 625 Touring">CFORCE 625 Touring</option>
+          <option value="CFORCE 850 XC">CFORCE 850 XC</option>
+          <option value="CFORCE 1000 OVERLAND">CFORCE 1000 OVERLAND</option>
+          <option value="UFORCE 600">UFORCE 600</option>
+          <option value="UFORCE 1000">UFORCE 1000</option>
+          <option value="UFORCE 1000 XL">UFORCE 1000 XL</option>
+          <option value="ZFORCE 800 TRAIL">ZFORCE 800 TRAIL</option>
+          <option value="ZFORCE 1000 SPORT">ZFORCE 1000 SPORT</option>
+          <option value="ZFORCE 950 SPORT 4">ZFORCE 950 SPORT 4</option>
+        </select>
+        <div class="invalid-feedback">Este campo es requerido</div>
+      </div>
+
+      <div class="form-item">
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="terminos"
+            name="terminos"
+            class="form-check-input"
+            required
+          />
+          <label for="terminos" class="form-check-label">
+            Aceptar términos y condiciones
+          </label>
+        </div>
+      </div>
+      <div class="legal-text">
+        Al enviar este formulario, aceptas que CFMOTO Colombia procese tus datos
+        personales de acuerdo con nuestra Política de Privacidad. Tus datos
+        serán utilizados para contactarte sobre los productos y servicios de
+        CFMOTO. Puedes darte de baja en cualquier momento a través de los
+        enlaces proporcionados en nuestras comunicaciones.
+      </div>
+
+      <div class="form-button">
+        <button type="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script define:vars={{ API_URL }}>
@@ -248,7 +250,13 @@ const API_URL = import.meta.env.PUBLIC_API_URL;
   .form-container {
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
+  }
+  .form-box {
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .form-item {
     display: flex;
